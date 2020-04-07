@@ -1,13 +1,12 @@
 #include "SwapChain.h"
 
-#include "Types/NativeWindowWrapper.h"
-#include "VulkanAPI/VkDriver.h"
-#include "utility/Logger.h"
+#include "Vulkan/VkContext.h"
 
 #include <algorithm>
 
 namespace VulkanAPI
 {
+
 Swapchain::Swapchain() 
 {
 }
@@ -36,7 +35,7 @@ bool Swapchain::prepare(VkContext& context, Platform::SurfaceWrapper& surface)
     // make sure that we have suitable swap chain extensions available before continuing
     if (surfaceFormats.empty() || presentModes.empty())
     {
-        LOGGER_ERROR("Critcal error! Unable to locate suitable swap chains on device.");
+        printf("Critcal error! Unable to locate suitable swap chains on device.");
         return false;
     }
 

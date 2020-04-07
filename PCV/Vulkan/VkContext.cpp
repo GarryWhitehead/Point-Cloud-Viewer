@@ -1,8 +1,5 @@
 #include "VkContext.h"
 
-#include "VulkanAPI/CBufferManager.h"
-#include "utility/Logger.h"
-
 #include <set>
 #include <string.h>
 
@@ -35,7 +32,7 @@ static VKAPI_ATTR VkBool32 VKAPI_CALL DebugCallback(
     else
     {
         // just output this as a log
-        LOGGER_INFO("Vulkan Information: %s: %s\n", layer_prefix, msg);
+        printf("Vulkan Information: %s: %s\n", layer_prefix, msg);
     }
     return VK_FALSE;
 }
@@ -90,7 +87,7 @@ static VKAPI_ATTR VkBool32 VKAPI_CALL DebugMessenger(
         for (uint32_t i = 0; i < data->objectCount; i++)
         {
             auto* name = data->pObjects[i].pObjectName;
-            LOGGER_INFO("  Object #%u: %s\n", i, name ? name : "N/A");
+            printf("  Object #%u: %s\n", i, name ? name : "N/A");
         }
     }
 
@@ -122,7 +119,7 @@ bool VkContext::prepareExtensions(
     {
         if (!findExtensionProperties(extensions[i], extensionProps))
         {
-            LOGGER_ERROR("Unable to find required extension properties for GLFW.");
+            printf("Unable to find required extension properties for GLFW.");
             return false;
         }
     }
@@ -202,7 +199,7 @@ bool VkContext::createInstance(const char** glfwExtension, uint32_t extCount)
     }
     else
     {
-        LOGGER_WARN("Unable to find validation standard layers.");
+        printf("Unable to find validation standard layers.");
     }
 #endif
 
@@ -285,7 +282,7 @@ bool VkContext::prepareDevice(const vk::SurfaceKHR windowSurface)
 {
     if (!instance)
     {
-        LOGGER_ERROR("You must first create a vulkan instance before creating the device!");
+        printf("You must first create a vulkan instance before creating the device!");
         return false;
     }
 
@@ -303,7 +300,7 @@ bool VkContext::prepareDevice(const vk::SurfaceKHR windowSurface)
 
     if (!physical)
     {
-        LOGGER_ERROR("Critcal error! No Vulkan supported GPU devices were found.");
+        printf("Critcal error! No Vulkan supported GPU devices were found.");
         return false;
     }
 
@@ -349,7 +346,7 @@ bool VkContext::prepareDevice(const vk::SurfaceKHR windowSurface)
     // graphics and presentation queues are compulsory
     if (queueFamilyIndex.present == VK_QUEUE_FAMILY_IGNORED)
     {
-        LOGGER_ERROR("Critcal error! Required queues not found.");
+        printf("Critcal error! Required queues not found.");
         return false;
     }
 
@@ -378,7 +375,7 @@ bool VkContext::prepareDevice(const vk::SurfaceKHR windowSurface)
 
     if (!findExtensionProperties(swapChainExtension[0], extensions))
     {
-        LOGGER_ERROR("Critical error! Swap chain extension not found.");
+        printf("Critical error! Swap chain extension not found.");
         return false;
     }
 

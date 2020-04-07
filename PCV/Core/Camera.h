@@ -1,21 +1,11 @@
 #pragma once
 
-#include "omega-engine/Camera.h"
+#include "Maths/OEMaths.h"
 
-#include "utility/EventManager.h"
-
-#include "OEMaths/OEMaths.h"
-#include "OEMaths/OEMaths_transform.h"
-
-#include "Components/ComponentManager.h"
-
-// the init number of cameras to resrve mem for.
-#define INIT_CONTAINER_SIZE 10
-
-namespace OmegaEngine
+namespace PCV
 {
 
-class OECamera : public Camera
+class Camera
 {
 public:
     
@@ -44,7 +34,7 @@ public:
 		float zFar;
 	};
 
-	OECamera() = default;
+	Camera() = default;
 
 	// ================== getters ====================
 
@@ -154,7 +144,5 @@ private:
 	// curren diection of movement for this camera
 	MoveDirection dir = MoveDirection::None;
 };
-
-
 
 } // namespace OmegaEngine

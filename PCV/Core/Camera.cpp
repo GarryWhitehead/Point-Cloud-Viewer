@@ -1,18 +1,18 @@
 #include "Camera.h"
 
-#include "OEMaths/OEMaths_transform.h"
+#include "Maths/transform.h"
 
 #include <algorithm>
 
-namespace OmegaEngine
+namespace PCV
 {
-void OECamera::prepare()
+void Camera::prepare()
 {
     // set the projection matrix (perspective only for now)
     currentProj = OEMaths::perspective(fov, aspect, zNear, zFar);
 }
 
-void OECamera::update()
+void Camera::update()
 {
     if (dir != MoveDirection::None)
     {
@@ -48,188 +48,106 @@ void OECamera::update()
     }
 }
 
-void OECamera::updateViewMatrix()
+void Camera::updateViewMatrix()
 {
     OEMaths::vec3f target = position + frontVec;
     currentView = OEMaths::lookAt(position, target, cameraUp);
 }
 
-void OECamera::rotate(float dx, float dy)
+void Camera::rotate(float dx, float dy)
 {
 }
 
-void OECamera::translate(float dx, float dy, float dz)
+void Camera::translate(float dx, float dy, float dz)
 {
 }
 
-void OECamera::updateDirection(const OECamera::MoveDirection moveDir)
+void Camera::updateDirection(const Camera::MoveDirection moveDir)
 {
     dir = moveDir;
 }
 
 // =================== getters ===========================
 
-OEMaths::mat4f OECamera::getMvpMatrix()
+OEMaths::mat4f Camera::getMvpMatrix()
 {
     return currentProj * currentView * currentModel;
 }
 
-float OECamera::getZNear() const
+float Camera::getZNear() const
 {
     return zNear;
 }
 
-float OECamera::getZFar() const
+float Camera::getZFar() const
 {
     return zFar;
 }
 
-float OECamera::getFov() const
+float Camera::getFov() const
 {
     return fov;
 }
 
-OEMaths::vec3f& OECamera::getPos()
+OEMaths::vec3f& Camera::getPos()
 {
     return position;
 }
 
-OEMaths::mat4f& OECamera::getProjMatrix()
+OEMaths::mat4f& Camera::getProjMatrix()
 {
     return currentProj;
 }
 
-OEMaths::mat4f& OECamera::getViewMatrix()
+OEMaths::mat4f& Camera::getViewMatrix()
 {
     return currentView;
 }
 
-OEMaths::mat4f& OECamera::getModelMatrix()
+OEMaths::mat4f& Camera::getModelMatrix()
 {
     return currentModel;
 }
 
 // ========================= setters =============================
-void OECamera::setPerspective()
+void Camera::setPerspective()
 {
     currentProj = OEMaths::perspective(fov, aspect, zNear, zFar);
 }
 
-void OECamera::setFov(const float camFov)
+void Camera::setFov(const float camFov)
 {
     fov = camFov;
 }
 
-void OECamera::setZNear(const float zn)
+void Camera::setZNear(const float zn)
 {
     zNear = zn;
 }
 
-void OECamera::setZFar(const float zf)
+void Camera::setZFar(const float zf)
 {
     zFar = zf;
 }
 
-void OECamera::setAspect(const float asp)
+void Camera::setAspect(const float asp)
 {
     aspect = asp;
 }
 
-void OECamera::setVelocity(const float vel)
+void Camera::setVelocity(const float vel)
 {
     velocity = vel;
 }
 
-void OECamera::setType(const Camera::CameraType camType)
+void Camera::setType(const Camera::CameraType camType)
 {
     type = camType;
 }
 
-void OECamera::setPosition(const OEMaths::vec3f& pos)
-{
-    position = pos;
-}
-
-// ============================ front-end =====================================
-
-void Camera::setFov(const float camFov)
-{
-    static_cast<OECamera*>(this)->setFov(camFov);
-}
-
-void Camera::setZNear(const float zn)
-{
-    static_cast<OECamera*>(this)->setZNear(zn);
-}
-
-void Camera::setZFar(const float zf)
-{
-    static_cast<OECamera*>(this)->setZFar(zf);
-}
-
-void Camera::setAspect(const float asp)
-{
-    static_cast<OECamera*>(this)->setAspect(asp);
-}
-
-void Camera::setVelocity(const float vel)
-{
-    static_cast<OECamera*>(this)->setVelocity(vel);
-}
-
-void Camera::setType(const CameraType camType)
-{
-    static_cast<OECamera*>(this)->setType(camType);
-}
-
 void Camera::setPosition(const OEMaths::vec3f& pos)
 {
-    static_cast<OECamera*>(this)->setPosition(pos);
-}
-
-OEMaths::mat4f Camera::getMvpMatrix()
-{
-    return static_cast<OECamera*>(this)->getMvpMatrix();
-}
-
-float Camera::getZNear() const
-{
-    return static_cast<const OECamera*>(this)->getZNear();
-}
-
-float Camera::getZFar() const
-{
-    return static_cast<const OECamera*>(this)->getZFar();
-}
-
-float Camera::getFov() const
-{
-    return static_cast<const OECamera*>(this)->getFov();
-}
-
-OEMaths::vec3f& Camera::getPos()
-{
-    return static_cast<OECamera*>(this)->getPos();
-}
-
-OEMaths::mat4f& Camera::getProjMatrix()
-{
-    return static_cast<OECamera*>(this)->getProjMatrix();
-}
-
-OEMaths::mat4f& Camera::getViewMatrix()
-{
-    return static_cast<OECamera*>(this)->getViewMatrix();
-}
-
-OEMaths::mat4f& Camera::getModelMatrix()
-{
-    return static_cast<OECamera*>(this)->getModelMatrix();
-}
-
-void Camera::prepare()
-{
-    static_cast<OECamera*>(this)->prepare();
+    position = pos;
 }
 
 } // namespace OmegaEngine

@@ -1,0 +1,10 @@
+C:/Users/THEGM/Documents/Git/Point-Cloud-Viewer/build/CMakeFiles/INSTALL.dir
+C:/Users/THEGM/Documents/Git/Point-Cloud-Viewer/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/THEGM/Documents/Git/Point-Cloud-Viewer/build/CMakeFiles/ZERO_CHECK.dir
+C:/Users/THEGM/Documents/Git/Point-Cloud-Viewer/build/External/glfw/CMakeFiles/uninstall.dir
+C:/Users/THEGM/Documents/Git/Point-Cloud-Viewer/build/External/glfw/CMakeFiles/INSTALL.dir
+C:/Users/THEGM/Documents/Git/Point-Cloud-Viewer/build/External/glfw/CMakeFiles/ALL_BUILD.dir
+C:/Users/THEGM/Documents/Git/Point-Cloud-Viewer/build/External/glfw/src/CMakeFiles/glfw.dir
+C:/Users/THEGM/Documents/Git/Point-Cloud-Viewer/build/External/glfw/src/CMakeFiles/INSTALL.dir
+C:/Users/THEGM/Documents/Git/Point-Cloud-Viewer/build/PCV/CMakeFiles/PCV_LIB.dir
+C:/Users/THEGM/Documents/Git/Point-Cloud-Viewer/build/PCV/CMakeFiles/INSTALL.dir

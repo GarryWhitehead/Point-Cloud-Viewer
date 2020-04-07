@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Application\Application.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Application\Platforms\PlatformGlfw.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Application\NativeWindowWrapper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Core\engine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Core\Scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Core\Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Rendering\RenderQueue.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Rendering\Renderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Maths\transform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Vulkan\Platform\Surface_Win32.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Vulkan\Platform\Surface_Linux.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Vulkan\Platform\Surface_Cocoa.mm">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Vulkan\VkContext.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Vulkan\Pipeline.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Vulkan\RenderPass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Vulkan\SwapChain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Vulkan\Common.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Application\Application.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Application\Platforms\PlatformGlfw.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Application\NativeWindowWrapper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Core\engine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Core\Scene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Core\Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Rendering\RenderQueue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Rendering\Renderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Maths\OEMaths.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Maths\Vec2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Maths\Vec3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Maths\Vec4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Maths\VecN.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Maths\Mat2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Maths\Mat3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Maths\Mat4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Maths\MatN.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Maths\transform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Vulkan\Platform\Surface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Vulkan\VkContext.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Vulkan\Pipeline.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Vulkan\RenderPass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Vulkan\SwapChain.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Vulkan\Common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{AB837FA9-657B-35FE-8757-FE86CF78E6A1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{A367B6BB-A785-3BBE-BBF5-F5C2B0ACF9C0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

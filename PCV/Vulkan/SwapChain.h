@@ -1,12 +1,10 @@
 #pragma once
 
-#include "Types/NativeWindowWrapper.h"
-#include "VulkanAPI/Common.h"
-#include "VulkanAPI/Image.h"
-#include "VulkanAPI/Platform/Surface.h"
-#include "VulkanAPI/RenderPass.h"
-#include "VulkanAPI/VkTexture.h"
-#include "VulkanAPI/CommandBuffer.h"
+#include "Application/NativeWindowWrapper.h"
+#include "Vulkan/Common.h"
+#include "Vulkan/Image.h"
+#include "Vulkan/Platform/Surface.h"
+#include "Vulkan/RenderPass.h"
 
 #include <vector>
 
@@ -24,7 +22,7 @@ class VkDriver;
 struct SwapchainContext
 {
     ImageView view;
-    CmdBuffer cmdBuffer;
+    vk::CommandBuffer commands;
     vk::Fence fence;
 };
 
@@ -32,14 +30,9 @@ class Swapchain
 {
 
 public:
+
     Swapchain();
     ~Swapchain();
-
-    // both copyable and moveable
-    Swapchain(const Swapchain&) = default;
-    Swapchain& operator=(const Swapchain&) = default;
-    Swapchain(Swapchain&&) = default;
-    Swapchain& operator=(Swapchain&&) = default;
 
     /**
      * @brief Creates the swapchain using the supplied native window surface
@@ -80,7 +73,5 @@ private:
     vk::SwapchainKHR swapchain;
 
     std::vector<SwapchainContext> contexts;
-
-    std::unique_ptr<CmdBuffer> scCmdBuffer;
 };
 } // namespace VulkanAPI

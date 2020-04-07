@@ -53,15 +53,26 @@ TARGET_SOURCES(PCV_LIB
 	Rendering/RenderQueue.cpp Rendering/RenderQueue.h
 	Rendering/Renderer.cpp Rendering/Renderer.h
    	
-	VulkanAPI/Platform/Surface.h
-    VulkanAPI/Platform/Surface_Win32.cpp
-    VulkanAPI/Platform/Surface_Linux.cpp
-    VulkanAPI/Platform/Surface_Cocoa.mm
-
-	VulkanAPI/VkContext.cpp VulkanAPI/VkContext.h
-	VulkanAPI/Pipeline.cpp VulkanAPI/Pipeline.h
-	VulkanAPI/RenderPass.cpp VulkanAPI/RenderPass.h
-	VulkanAPI/SwapChain.cpp VulkanAPI/SwapChain.h
+	Maths/OEMaths.h
+	Maths/Vec2.h
+	Maths/Vec3.h
+	Maths/Vec4.h
+	Maths/VecN.h
+	Maths/Mat2.h
+	Maths/Mat3.h
+	Maths/Mat4.h
+	Maths/MatN.h
+	Maths/transform.cpp Maths/transform.h
+	
+	Vulkan/Platform/Surface.h
+   	Vulkan/Platform/Surface_Win32.cpp
+    Vulkan/Platform/Surface_Linux.cpp
+    Vulkan/Platform/Surface_Cocoa.mm
+	Vulkan/VkContext.cpp Vulkan/VkContext.h
+	Vulkan/Pipeline.cpp Vulkan/Pipeline.h
+	Vulkan/RenderPass.cpp Vulkan/RenderPass.h
+	Vulkan/SwapChain.cpp Vulkan/SwapChain.h
+	Vulkan/Common.cpp Vulkan/Common.h
 )
 
 # ================= linking =======================

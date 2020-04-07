@@ -1,40 +1,22 @@
 #include "Scene.h"
 
-#include "Components/LightManager.h"
-#include "Components/RenderableManager.h"
-#include "Components/TransformManager.h"
 #include "Core/Camera.h"
 #include "Core/Engine.h"
-#include "Core/Frustum.h"
-#include "Core/ModelGraph.h"
-#include "Core/World.h"
-#include "ModelImporter/MeshInstance.h"
-#include "Rendering/GBufferFillPass.h"
-#include "Threading/ThreadPool.h"
-#include "Types/Skybox.h"
-#include "VulkanAPI/VkDriver.h"
-#include "utility/AlignedAlloc.h"
 
-namespace OmegaEngine
+namespace PCV
 {
 
-OEScene::OEScene(OEWorld& world, OEEngine& engine, VulkanAPI::VkDriver& driver)
-    : driver(driver), world(world), engine(engine)
+Scene::Scene(Engine& engine)
+    : engine(engine)
 {
 }
 
-OEScene::~OEScene()
+Scene::~Scene()
 {
 }
 
-void OEScene::prepare()
-{
-    // prepare the camera buffer - note: the id matches the naming of the shader ubo
-    // the data will be updated on a per frame basis in the update
-    driver.addUbo(cameraUboName, sizeof(OECamera::Ubo), VulkanAPI::Buffer::Usage::Dynamic);
-}
 
-void OEScene::getVisibleRenderables(
+void Scene::getVisibleRenderables(
     Frustum& frustum, std::vector<OEScene::VisibleCandidate>& renderables)
 {
     size_t workSize = renderables.size();
@@ -56,87 +38,8 @@ void OEScene::getVisibleRenderables(
     splitWork.run();
 }
 
-void OEScene::getVisibleLights(Frustum& frustum, std::vector<LightBase*>& lights)
+bool Scene::update(const double time)
 {
-    size_t workSize = lights.size();
-
-    auto visibilityCheck = [&frustum, &lights](const size_t curr_idx, const size_t chunkSize) {
-        assert(curr_idx + chunkSize <= lights.size());
-        for (size_t idx = curr_idx; idx < curr_idx + chunkSize; ++idx)
-        {
-            LightBase* light = lights[idx];
-            light->isVisible = false;
-
-            if (light->type == LightType::Directional)
-            {
-                // no visisbility check on directional light
-                light->isVisible = true;
-                continue;
-            }
-
-            float radius;
-            OEMaths::vec3f pos;
-            if (light->type == LightType::Point)
-            {
-                PointLight* pLight = reinterpret_cast<PointLight*>(light);
-                radius = pLight->radius;
-                pos = pLight->position;
-            }
-            else if (light->type == LightType::Spot)
-            {
-                SpotLight* sLight = reinterpret_cast<SpotLight*>(light);
-                radius = sLight->radius;
-                pos = sLight->position;
-            }
-            else
-            {
-                LOGGER_WARN("Unrecognisied light type detected. This shouldn't happen!");
-                continue;
-            }
-
-            // check whether this light is with the frustum boundaries
-            if (frustum.checkSphereIntersect(pos, radius))
-            {
-                light->isVisible = true;
-            }
-        }
-    };
-
-    ThreadTaskSplitter splitWork {0, workSize, visibilityCheck};
-    splitWork.run();
-}
-
-OEScene::VisibleCandidate OEScene::buildRendCandidate(OEObject* obj, OEMaths::mat4f& worldMat)
-{
-    auto& transManager = engine.getTransManager();
-    auto* rendManager = engine.getRendManager();
-
-    const ObjectHandle tHandle = transManager.getObjIndex(*obj);
-    const ObjectHandle rHandle = rendManager->getObjIndex(*obj);
-
-    VisibleCandidate candidate;
-    candidate.renderable = &rendManager->getMesh(rHandle);
-    candidate.transform = &transManager.getTransform(tHandle);
-
-    // calculate the world-orientated AABB
-    OEMaths::mat4f localMat = candidate.transform->modelTransform;
-    candidate.worldTransform = worldMat * localMat;
-
-    AABBox box {candidate.renderable->instance->dimensions.min,
-                candidate.renderable->instance->dimensions.max};
-    candidate.worldAABB = AABBox::calculateRigidTransform(box, candidate.worldTransform);
-    return candidate;
-}
-
-bool OEScene::update(const double time)
-{
-    // update the managers first
-    engine.getAnimManager().update(time, engine);
-
-    if (!engine.getRendManager()->update())
-    {
-        return false;
-    }
 
     auto& objects = world.getObjectsList();
     auto& models = world.getModelGraph().getNodeList();
@@ -279,252 +182,16 @@ void OEScene::updateCameraBuffer()
     driver.updateUbo(cameraUboName, sizeof(OECamera::Ubo), &ubo);
 }
 
-void OEScene::updateTransformBuffer(
-    std::vector<OEScene::VisibleCandidate>& candObjects,
-    const size_t staticModelCount,
-    const size_t skinnedModelCount)
-{
-    // transforms
-    struct TransformUbo
-    {
-        OEMaths::mat4f modelMatrix;
-    };
-
-    struct SkinnedUbo
-    {
-        OEMaths::mat4f modelMatrix;
-        OEMaths::mat4f jointMatrices[TransformManager::MAX_BONE_COUNT];
-        float jointCount;
-    };
-
-    // Dynamic buffers are aligned to >256 bytes as designated by the Vulkan spec
-    const size_t staticDynAlign = (sizeof(TransformUbo) + 256 - 1) & ~(256 - 1);
-    const size_t skinDynAlign = (sizeof(SkinnedUbo) + 256 - 1) & ~(256 - 1);
-    Util::AlignedAlloc skinAlignAlloc;
-    Util::AlignedAlloc staticAlignAlloc;
-
-    if (skinnedModelCount > 0)
-    {
-        skinAlignAlloc.alloc(skinDynAlign * skinnedModelCount, skinDynAlign);
-        assert(!skinAlignAlloc.empty());
-    }
-    if (staticModelCount > 0)
-    {
-        staticAlignAlloc.alloc(staticDynAlign * staticModelCount, staticDynAlign);
-        assert(!staticAlignAlloc.empty());
-    }
-
-    size_t staticCount = 0;
-    size_t skinnedCount = 0;
-
-    for (auto& cand : candObjects)
-    {
-        Renderable* rend = cand.renderable;
-        if (!rend->visibility.testBit(Renderable::Visible::Render))
-        {
-            continue;
-        }
-
-        TransformInfo* transInfo = cand.transform;
-        if (transInfo->jointMatrices.empty())
-        {
-            size_t offset = staticDynAlign * staticCount++;
-            TransformUbo* currStaticPtr =
-                (TransformUbo*) ((uint64_t) staticAlignAlloc.getData() + (offset));
-            currStaticPtr->modelMatrix = transInfo->modelTransform;
-
-            // the dynamic buffer offsets are stored in the renderable for ease of access when
-            // drawing
-            rend->dynamicOffset = offset;
-        }
-        else
-        {
-            size_t offset = skinDynAlign * skinnedCount++;
-            SkinnedUbo* currSkinnedPtr =
-                (SkinnedUbo*) ((uint64_t) skinAlignAlloc.getData() + (skinDynAlign * skinnedCount++));
-            currSkinnedPtr->modelMatrix = cand.worldTransform;
-
-            // rather than throw an error, clamp the joint if it exceeds the max
-            uint32_t jointCount = std::min(
-                TransformManager::MAX_BONE_COUNT,
-                static_cast<uint32_t>(transInfo->jointMatrices.size()));
-            memcpy(
-                currSkinnedPtr->jointMatrices,
-                transInfo->jointMatrices.data(),
-                jointCount * sizeof(OEMaths::mat4f));
-            rend->dynamicOffset = offset;
-        }
-    }
-
-    // Static and skinned model buffers have three outcomes - new instances are created if this is
-    // the first frame, the new data is mapped to the existing buffer if the data sisze is within
-    // the current buffer size or the buffer is destroyed and a new static buffer created
-    if (staticModelCount > 0)
-    {
-        size_t staticDataSize = staticModelCount * sizeof(TransformUbo);
-        driver.addUbo(staticTransUboName, staticDataSize, VulkanAPI::Buffer::Usage::Static);
-        driver.updateUbo(staticTransUboName, staticDataSize, staticAlignAlloc.getData());
-    }
-
-    // skinned buffer
-    if (skinnedModelCount > 0)
-    {
-        size_t skinnedDataSize = skinnedModelCount * sizeof(SkinnedUbo);
-        driver.addUbo(skinnedTransUboName, skinnedDataSize, VulkanAPI::Buffer::Usage::Static);
-        driver.updateUbo(skinnedTransUboName, skinnedDataSize, skinAlignAlloc.getData());
-    }
-}
-
-void OEScene::updateLightBuffer(std::vector<LightBase*> candLights)
-{
-    // a mirror of the shader structs
-    struct PointLightUbo
-    {
-        OEMaths::mat4f lightMvp;
-        OEMaths::vec4f position;
-        OEMaths::colour4 colour; //< rgb, intensity (lumens)
-        float fallOut;
-    };
-
-    struct SpotLightUbo
-    {
-        OEMaths::mat4f lightMvp;
-        OEMaths::vec4f position;
-        OEMaths::vec4f direction;
-        OEMaths::colour4 colour; //< rgb, intensity (lumens)
-        float scale;
-        float offset;
-        float fallOut;
-    };
-
-    struct DirectionalLightUbo
-    {
-        OEMaths::mat4f lightMvp;
-        OEMaths::vec4f position;
-        OEMaths::vec4f direction;
-        OEMaths::colour4 colour; //< rgb, intensity (lumens)
-    };
-
-
-    uint32_t spotlightCount = 0;
-    uint32_t pointlightCount = 0;
-    uint32_t dirLightCount = 0;
-
-    std::array<SpotLightUbo, OELightManager::MAX_SPOT_LIGHTS> spotLights;
-    std::array<PointLightUbo, OELightManager::MAX_POINT_LIGHTS> pointLights;
-    std::array<DirectionalLightUbo, OELightManager::MAX_DIR_LIGHTS> dirLights;
-
-    // copy the light attributes we need for use in the light shaders.
-    for (LightBase* light : candLights)
-    {
-        if (!light->isVisible)
-        {
-            continue;
-        }
-
-        if (light->type == LightType::Spot)
-        {
-            const auto& spotLight = static_cast<SpotLight*>(light);
-
-            // fill in the data to be sent to the gpu
-            SpotLightUbo ubo {light->lightMvp,
-                              OEMaths::vec4f {spotLight->position, 1.0f},
-                              OEMaths::vec4f {spotLight->target, 1.0f},
-                              {spotLight->colour, spotLight->intensity},
-                              spotLight->scale,
-                              spotLight->offset,
-                              spotLight->fallout};
-            spotLights[spotlightCount++] = ubo;
-        }
-        else if (light->type == LightType::Point)
-        {
-            const auto& pointLight = static_cast<PointLight*>(light);
-
-            // fill in the data to be sent to the gpu
-            PointLightUbo ubo {light->lightMvp,
-                               OEMaths::vec4f {pointLight->position, 1.0f},
-                               {pointLight->colour, pointLight->intensity},
-                               pointLight->fallOut};
-            pointLights[pointlightCount++] = ubo;
-        }
-        else if (light->type == LightType::Directional)
-        {
-            const auto& dirLight = static_cast<DirectionalLight*>(light);
-
-            // fill in the data to be sent to the gpu
-            DirectionalLightUbo ubo {dirLight->lightMvp,
-                                     OEMaths::vec4f {dirLight->position, 1.0f},
-                                     OEMaths::vec4f {dirLight->target, 1.0f},
-                                     {dirLight->colour, dirLight->intensity}};
-            dirLights[dirLightCount++] = ubo;
-        }
-    }
-
-    if (spotlightCount)
-    {
-        size_t dataSize = spotlightCount * sizeof(SpotLightUbo);
-        driver.addUbo(spotlightUboName, dataSize, VulkanAPI::Buffer::Usage::Dynamic);
-        driver.updateUbo(spotlightUboName, dataSize, spotLights.data());
-    }
-    if (pointlightCount)
-    {
-        size_t dataSize = pointlightCount * sizeof(PointLightUbo);
-        driver.addUbo(pointlightUboName, dataSize, VulkanAPI::Buffer::Usage::Dynamic);
-        driver.updateUbo(pointlightUboName, dataSize, pointLights.data());
-    }
-    if (dirLightCount)
-    {
-        size_t dataSize = dirLightCount * sizeof(DirectionalLightUbo);
-        driver.addUbo(dirlightUboName, dataSize, VulkanAPI::Buffer::Usage::Dynamic);
-        driver.updateUbo(dirlightUboName, dataSize, dirLights.data());
-    }
-}
-
-void OEScene::setCurrentCamera(OECamera* cam)
+void Scene::setCurrentCamera(Camera* cam)
 {
     assert(cam);
     camera = cam;
 }
 
-OECamera* OEScene::getCurrentCamera()
+Camera* Scene::getCurrentCamera()
 {
     return camera;
 }
 
-bool OEScene::addSkybox(OESkybox* sb)
-{
-    assert(sb);
-    if (!sb->cubeMap->isCubeMap())
-    {
-        LOGGER_ERROR(
-            "Trying to add a skybox which has the incorrect texture type - must be a cubemap.");
-        return false;
-    }
-    skybox = sb;
-    
-    return true;
-}
-
-// ============================ front-end =========================================
-
-void Scene::addCamera(Camera* camera)
-{
-    static_cast<OEScene*>(this)->setCurrentCamera(static_cast<OECamera*>(camera));
-}
-
-void Scene::prepare()
-{
-    static_cast<OEScene*>(this)->prepare();
-}
-
-Camera* Scene::getCurrentCamera()
-{
-    return static_cast<OEScene*>(this)->getCurrentCamera();
-}
-
-bool Scene::addSkybox(Skybox* instance)
-{
-    return static_cast<OEScene*>(this)->addSkybox(static_cast<OESkybox*>(instance));
-}
 
 } // namespace OmegaEngine

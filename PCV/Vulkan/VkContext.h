@@ -1,6 +1,6 @@
 #pragma once
 
-#include "VulkanAPI/Common.h"
+#include "Vulkan/Common.h"
 
 namespace VulkanAPI
 {

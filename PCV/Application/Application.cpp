@@ -1,13 +1,11 @@
 #include "Application.h"
 
+#include "NativeWindowWrapper.h"
 #include "Core/engine.h"
 #include "Core/Scene.h"
 #include "Rendering/Renderer.h"
-#include "Types/NativeWindowWrapper.h"
-#include "omega-engine/Engine.h"
-#include "utility/Logger.h"
-#include "utility/Timer.h"
 
+#include <cassert>
 #include <thread>
 
 using namespace std::literals::chrono_literals;
@@ -15,54 +13,53 @@ using namespace std::literals::chrono_literals;
 namespace OmegaEngine
 {
 
-OEApplication* OEApplication::create(const char* title, uint32_t width, uint32_t height)
+Application* Application::create(const char* title, uint32_t width, uint32_t height)
 {
     // create a new instance
-    OEApplication* app = new OEApplication();
+    Application* app = new Application();
 
     if (!app->init(title, width, height))
     {
-        LOGGER_ERROR("Fatal Error. Unbale to create an instance pf OE application.");
+        printf("Fatal Error. Unbale to create an instance pf OE application.");
         return nullptr;
     }
 
     return app;
 }
 
-OEEngine* OEApplication::createEngine(OEWindowInstance* window)
+Engine* Application::createEngine(WindowInstance* window)
 {
     OEEngine* eng = new OEEngine();
     if (!eng)
     {
-        LOGGER_ERROR("Unable to crerate an engine instance");
+        printf("Unable to crerate an engine instance");
         return nullptr;
     }
     if (!eng->init(window))
     {
-        LOGGER_ERROR("Fatal Error. Unable to initialiase the engine.");
+        printf("Fatal Error. Unable to initialiase the engine.");
         return nullptr;
     }
     return eng;
 }
 
-OEWindowInstance* OEApplication::init(const char* title, uint32_t width, uint32_t height)
+WindowInstance* Application::init(const char* title, uint32_t width, uint32_t height)
 {
     // init glfw
     if (!glfw.init())
     {
-
-        LOGGER_ERROR("Unable to initilaise glfw.");
+        printf("Unable to initilaise glfw.");
         return nullptr;
     }
 
     // create a window
     if (!glfw.createWindow(width, height, title))
     {
-        LOGGER_ERROR("Unable to create a glfw window.");
+        printf("Unable to create a glfw window.");
         return nullptr;
     }
 
-    winInstance = new OEWindowInstance();
+    winInstance = new WindowInstance();
     assert(winInstance);
 
     winInstance->width = width;
@@ -73,7 +70,7 @@ OEWindowInstance* OEApplication::init(const char* title, uint32_t width, uint32_
     return winInstance;
 }
 
-bool OEApplication::run(OEScene* scene, OERenderer* renderer)
+bool Application::run(Scene* scene, Renderer* renderer)
 {
     // convert delta time to ms
     const NanoSeconds frameTime(33ms);
@@ -122,7 +119,7 @@ bool OEApplication::run(OEScene* scene, OERenderer* renderer)
     return true;
 }
 
-void OEApplication::destroy(OEApplication* app)
+void Application::destroy(OEApplication* app)
 {
     if (app)
     {
@@ -131,43 +128,10 @@ void OEApplication::destroy(OEApplication* app)
     }
 }
 
-OEWindowInstance* OEApplication::getWindow()
+OEWindowInstance* Application::getWindow()
 {
     assert(winInstance);
     return winInstance;
-}
-
-// ===================== front-end =========================================
-
-WindowInstance* Application::init(const char* title, uint32_t width, uint32_t height)
-{
-    return static_cast<OEApplication*>(this)->init(title, width, height);
-}
-
-bool Application::run(Scene* scene, Renderer* renderer)
-{
-    return static_cast<OEApplication*>(this)->run(
-        static_cast<OEScene*>(scene), static_cast<OERenderer*>(renderer));
-}
-
-Application* Application::create(const char* title, uint32_t width, uint32_t height)
-{
-    return OEApplication::create(title, width, height);
-}
-
-Engine* Application::createEngine(WindowInstance* window)
-{
-    return static_cast<OEApplication*>(this)->createEngine(static_cast<OEWindowInstance*>(window));
-}
-
-void Application::destroy(Application* app)
-{
-    OEApplication::destroy(static_cast<OEApplication*>(app));
-}
-
-WindowInstance* Application::getWindow()
-{
-    return static_cast<OEApplication*>(this)->getWindow();
 }
 
 } // namespace OmegaEngine

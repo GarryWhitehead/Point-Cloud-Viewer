@@ -1,8 +1,7 @@
 #pragma once
 
-#include "OEMaths/OEMaths.h"
-#include "VulkanAPI/Common.h"
-#include "utility/BitsetEnum.h"
+#include "Maths/OEMaths.h"
+#include "Vulkan/Common.h"
 
 #include <cassert>
 #include <cstdint>
@@ -16,76 +15,20 @@ namespace VulkanAPI
 class ImageView;
 struct VkContext;
 
-/**
- * @brief Flags for subpass dependencies, indicating each subpass barrier property
- */
-enum class SubpassFlags : uint64_t
-{
-    DepthRead,
-    StencilRead,
-    ColourRead,
-    TopOfPipeline,
-    BottomOfPipeline,
-    Merged,
-    MergedBegin,
-    MergedEnd,
-    Threaded,
-    __SENTINEL__
-};
-
 class RenderPass
 {
 
 public:
-    enum class LoadType
-    {
-        Store,
-        Clear,
-        DontCare
-    };
-
-    enum class StoreType
-    {
-        Store,
-        DontCare
-    };
-
-    /**
-     * Describes what should be done with the images pre- and post- pass - i.e. keep or throw away
-     * the data
-     */
-    struct ClearFlags
-    {
-        LoadType attachLoad = LoadType::Clear;
-        StoreType attachStore = StoreType::Store;
-        LoadType stencilLoad = LoadType::DontCare;
-        StoreType stencilStore = StoreType::DontCare;
-    };
 
     RenderPass(VkContext& context);
     ~RenderPass();
 
-    // no copying
-    RenderPass(const RenderPass&) = delete;
-    RenderPass& operator=(const RenderPass&) = delete;
-
     // static functions
     static vk::ImageLayout getFinalTransitionLayout(const vk::Format format);
     static vk::ImageLayout getAttachmentLayout(vk::Format format);
-    static vk::AttachmentLoadOp loadFlagsToVk(const LoadType flags);
-    static vk::AttachmentStoreOp storeFlagsToVk(const StoreType flags);
-    static vk::SampleCountFlagBits samplesToVk(const uint32_t count);
 
     /// Adds a attahment for this pass. This can be a colour or depth attachment
-    void addOutputAttachment(
-        const vk::Format format,
-        const uint32_t reference,
-        ClearFlags& clearFlags,
-        const uint32_t sampleCount);
-
-    /// adds an input attachment reference. Must have an attachment description added by calling
-    /// **addAttachment**
-    void addInputRef(const uint32_t reference);
+    void addAttachment(const vk::Format format);
 
     /// Adds a subpass, the colour outputs and inputs will be linked via the reference ids. These
     /// must have already been added as attachments, otherwise this will throw an error
@@ -93,8 +36,6 @@ public:
         std::vector<uint32_t>& inputRefs,
         std::vector<uint32_t>& outputRefs,
         const uint32_t depthRef = UINT32_MAX);
-
-    void addSubpassDependency(const Util::BitSetEnum<VulkanAPI::SubpassFlags>& flags);
 
     /// Actually creates the renderpass based on the above definitions
     void prepare();
@@ -142,22 +83,13 @@ private:
 
     /// the colour/input attachments
     std::vector<vk::AttachmentDescription> attachments;
-    std::vector<OutputReferenceInfo> outputRefs;
-    std::vector<vk::AttachmentReference> inputRefs;
 
     /// subpasses - could be a single or multipass
     std::vector<SubpassInfo> subpasses;
 
-    /// the dependencies between renderpasses and external sources
-    std::vector<vk::SubpassDependency> dependencies;
-
     /// the clear colour for this pass - for each attachment
     OEMaths::colour4 clearCol;
     float depthClear = 0.0f;
-
-    /// max extents of this pass
-    uint32_t width = 0;
-    uint32_t height = 0;
 };
 
 class FrameBuffer

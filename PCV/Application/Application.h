@@ -1,7 +1,5 @@
 #pragma once
 
-#include "omega-engine/Application.h"
-
 #include "Platforms/PlatformGlfw.h"
 
 #include <cstdint>
@@ -10,26 +8,23 @@
 namespace OmegaEngine
 {
 
-class OEEngine;
-class OEScene;
-class OERenderer;
-class OEWindowInstance;
+class Engine;
+class Scene;
+class Renderer;
+class WindowInstance;
 
-class OEApplication : public Application
+class Application
 {
     
 public:
     
-    OEApplication() = default;
+    Application() = default;
 
-    OEApplication(const OEApplication&) = delete;
-    OEApplication& operator=(const OEApplication&) = delete;
+    static Application* create(const char* title, uint32_t width, uint32_t height);
 
-    static OEApplication* create(const char* title, uint32_t width, uint32_t height);
+    static void destroy(Application* app);
 
-    static void destroy(OEApplication* app);
-
-    OEEngine* createEngine(OEWindowInstance* window);
+    Engine* createEngine(WindowInstance* window);
 
     /** 
      * initilaises the window and surface for rendering. Also prepares the vulkan backend.
@@ -38,19 +33,19 @@ public:
      * @param height: window height in dpi; if zero will sets window height to fullscreen size
      * @return If everything is initialsied successfully, returns a native window pointer
     */
-	OEWindowInstance* init(const char* title, uint32_t width, uint32_t height);
+	WindowInstance* init(const char* title, uint32_t width, uint32_t height);
 
-    bool run(OEScene* scene, OERenderer* renderer);
+    bool run(Scene* scene, Renderer* renderer);
 
     OEWindowInstance* getWindow();
 
 private:
 
     // A engine instance. Only one permitted at the moment.
-	OEEngine* engine = nullptr;
+	Engine* engine = nullptr;
 
     // current window - maybe we should allow multiple window instances?
-	OEWindowInstance* winInstance = nullptr;
+	WindowInstance* winInstance = nullptr;
 
     GlfwPlatform glfw;
 

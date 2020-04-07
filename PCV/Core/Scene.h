@@ -1,15 +1,6 @@
 #pragma once
 
-#include "omega-engine/Scene.h"
-#include "omega-engine/Skybox.h"
-
-#include "Types/AABox.h"
-
 #include "Rendering/RenderQueue.h"
-
-#include "VulkanAPI/Buffer.h"
-
-#include "utility/CString.h"
 
 #include <vector>
 
@@ -18,34 +9,17 @@ namespace VulkanAPI
 class VkDriver;
 }
 
-namespace OmegaEngine
+namespace PCV
 {
 
 // forward decleartions
-class OEWorld;
-class GltfModel;
-class OEObject;
-class OEEngine;
-class OECamera;
-struct TransformInfo;
-class Frustum;
-struct Renderable;
-class LightBase;
-class OESkybox;
-class SkyboxInstance;
+class Engine;
+class Camera;
 
-class OEScene : public Scene
+class Scene
 {
 public:
 	
-	// ubo buffer names used by the scene
-    const Util::String cameraUboName = "CameraUbo";
-    const Util::String staticTransUboName = "StaticTransform";
-    const Util::String skinnedTransUboName = "SkinnedTransform";
-    const Util::String spotlightUboName = "SpotLights";
-    const Util::String pointlightUboName = "PointLights";
-    const Util::String dirlightUboName = "DirectionalLights";
-
 	/**
 	* @brief A temp struct used to gather viable renderable objects data ready for visibilty checks
 	* and passing to the render queue
@@ -58,8 +32,8 @@ public:
         OEMaths::mat4f worldTransform;
 	};
 
-	OEScene(OEWorld& world, OEEngine& engine, VulkanAPI::VkDriver& driver);
-	~OEScene();
+	Scene(Engine& engine);
+	~Scene();
 
 	bool update(const double time);
 
@@ -67,15 +41,9 @@ public:
 
 	void updateCameraBuffer();
 
-	void updateTransformBuffer(std::vector<OEScene::VisibleCandidate>& cand, const size_t staticModelCount, const size_t skinnedModelCount);
-
-	void updateLightBuffer(std::vector<LightBase*> lights);
-
-	OECamera* getCurrentCamera();
+	Camera* getCurrentCamera();
 
 	void getVisibleRenderables(Frustum& frustum, std::vector<VisibleCandidate>& renderables);
-
-	void getVisibleLights(Frustum& frustum, std::vector<LightBase*>& renderables);
     
     VisibleCandidate buildRendCandidate(OEObject* obj, OEMaths::mat4f& worldMat);
     
@@ -88,19 +56,14 @@ public:
 	friend class OERenderer;
 
 private:
-	VulkanAPI::VkDriver& driver;
 
 	/// per frame: all the renderables after visibility checks
-	RenderQueue renderQueue;
+    RenderQueue renderQueue;
     
 	/// Current camera used by this scene. The 'world' holds the ownership of the cma
-	OECamera* camera;
-    
-    /// the skybox to be used with this scene. Also used for global illumination
-    OESkybox* skybox;
-    
+	Camera* camera;
+
 	/// The world this scene is assocaited with
-	OEWorld& world;
-	OEEngine& engine;
+	Engine& engine;
 };
 }    // namespace OmegaEngine

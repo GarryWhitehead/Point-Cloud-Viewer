@@ -1,44 +1,21 @@
 #include "Core/Engine.h"
 
-#include "Core/Omega_Global.h"
 #include "Core/Scene.h"
-#include "Core/World.h"
-
 #include "Rendering/Renderer.h"
 
-#include "Types/NativeWindowWrapper.h"
+#include "Application/NativeWindowWrapper.h"
 
-#include "VulkanAPI/SwapChain.h"
+#include "Vulkan/SwapChain.h"
 
-
-#include "rapidjson/document.h"
-#include "rapidjson/stringbuffer.h"
-
-#include "utility/FileUtil.h"
-#include "utility/Logger.h"
-
-namespace OmegaEngine
+namespace PCV
 {
-OEEngine::OEEngine()
-    : vkDriver(std::make_unique<VulkanAPI::VkDriver>())
-    , transManager(std::make_unique<TransformManager>())
-    , rendManager(std::make_unique<OERenderableManager>(*this))
-    , animManager(std::make_unique<AnimationManager>())
-    , lightManager(std::make_unique<OELightManager>())
+
+Engine::Engine()
 {
 }
 
-OEEngine::~OEEngine()
+Engine::~Engine()
 {
-    for (OEWorld* world : worlds)
-    {
-        if (world)
-        {
-            delete world;
-        }
-    }
-    worlds.clear();
-
     for (Renderer* rend : renderers)
     {
         if (rend)
@@ -49,7 +26,7 @@ OEEngine::~OEEngine()
     renderers.clear();
 }
 
-bool OEEngine::init(OEWindowInstance* window)
+bool Engine::init(OEWindowInstance* window)
 {
     if (!vkDriver->createInstance(window->extensions.first, window->extensions.second))
     {
@@ -67,7 +44,7 @@ bool OEEngine::init(OEWindowInstance* window)
     return true;
 }
 
-SwapchainHandle OEEngine::createSwapchain(OEWindowInstance* window)
+SwapchainHandle Engine::createSwapchain(OEWindowInstance* window)
 {
     // create a swapchain for surface rendering based on the platform specific window surface
     auto sc = std::make_unique<VulkanAPI::Swapchain>();
@@ -76,20 +53,7 @@ SwapchainHandle OEEngine::createSwapchain(OEWindowInstance* window)
     return SwapchainHandle {static_cast<uint32_t>(swapchains.size() - 1)};
 }
 
-OEWorld* OEEngine::createWorld(Util::String name)
-{
-    // create an empty world
-    OEWorld* world = new OEWorld(*this, *vkDriver);
-
-    world->prepare(name);
-
-    worlds.emplace_back(std::move(world));
-    this->currentWorld = name;
-
-    return world;
-}
-
-Renderer* OEEngine::createRenderer(SwapchainHandle& handle, OEScene* scene)
+Renderer* Engine::createRenderer(SwapchainHandle& handle, OEScene* scene)
 {
     auto& swapchain = swapchains[handle.getHandle()];
 
@@ -99,63 +63,5 @@ Renderer* OEEngine::createRenderer(SwapchainHandle& handle, OEScene* scene)
     return renderer;
 }
 
-VulkanAPI::VkDriver& OEEngine::getVkDriver()
-{
-    return *vkDriver;
-}
-
-// ** manager helper functions **
-AnimationManager& OEEngine::getAnimManager()
-{
-    return *animManager;
-}
-
-OELightManager* OEEngine::getLightManager()
-{
-    return lightManager.get();
-}
-
-OERenderableManager* OEEngine::getRendManager()
-{
-    return rendManager.get();
-}
-
-TransformManager& OEEngine::getTransManager()
-{
-    return *transManager;
-}
-
-// ========================== front-end =========================================
-
-bool Engine::init(WindowInstance* window)
-{
-    return static_cast<OEEngine*>(this)->init(static_cast<OEWindowInstance*>(window));
-}
-
-SwapchainHandle Engine::createSwapchain(WindowInstance* window)
-{
-    return static_cast<OEEngine*>(this)->createSwapchain(static_cast<OEWindowInstance*>(window));
-}
-
-Renderer* Engine::createRenderer(SwapchainHandle& handle, Scene* scene)
-{
-    return static_cast<OEEngine*>(this)->createRenderer(handle, static_cast<OEScene*>(scene));
-}
-
-World* Engine::createWorld(Util::String name)
-{
-    return static_cast<OEEngine*>(this)->createWorld(name);
-}
-
-/*ightManager* Engine::getLightManager()
-{
-        OELightManager* man = static_cast<OEEngine*>(this)->getLightManager();
-        return static_cast<LightManager*>(man);
-}
-
-RenderableManager* Engine::getRendManager()
-{
-        return static_cast<OEEngine*>(this)->getRendManager();
-}*/
 
 } // namespace OmegaEngine

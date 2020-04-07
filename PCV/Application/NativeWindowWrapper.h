@@ -1,7 +1,5 @@
 #pragma once
 
-#include "omega-engine/Engine.h"
-
 #include <memory>
 #include <cstdint>
 #include <vector>
@@ -9,10 +7,7 @@
 namespace OmegaEngine
 {
 
-/**
-     * A wrapper containing all the information needed to create a swapchain.
-     */
-class OEWindowInstance : public WindowInstance
+class WindowInstance 
 {
 public:
     
@@ -22,8 +17,8 @@ public:
     
     uint32_t getHeight() const;
 
-    friend class OEEngine;
-    friend class OEApplication;
+    friend class Engine;
+    friend class Application;
     
 private:
     

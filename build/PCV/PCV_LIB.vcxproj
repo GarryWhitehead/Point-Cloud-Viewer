@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{2306DABD-B5C2-3FC5-8742-4B50BD85756F}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>PCV_LIB</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\build\PCV\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">PCV_LIB.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">PCV_LIB</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\build\PCV\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">PCV_LIB.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">PCV_LIB</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\build\PCV\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">PCV_LIB.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">PCV_LIB</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\build\PCV\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">PCV_LIB.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">PCV_LIB</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External\vulkan;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External\VulkanMemoryAllocator\src;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Application;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Application\Platforms;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Core;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\Components;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\Rendering;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\VulkanAPI;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\VulkanAPI\Platform;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;NOMINMAX;_CRT_NONSTDC_NO_DEPRECATE;_USE_MATH_DEFINES=1;VK_USE_PLATFORM_WIN32_KHR;OE_SHADER_DIR="C:/Users/THEGM/Documents/Git/Point-Cloud-Viewer/Shaders/";CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;NOMINMAX;_CRT_NONSTDC_NO_DEPRECATE;_USE_MATH_DEFINES=1;VK_USE_PLATFORM_WIN32_KHR;OE_SHADER_DIR=\"C:/Users/THEGM/Documents/Git/Point-Cloud-Viewer/Shaders/\";CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External\vulkan;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External\VulkanMemoryAllocator\src;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Application;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Application\Platforms;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Core;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\Components;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\Rendering;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\VulkanAPI;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\VulkanAPI\Platform;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External\vulkan;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External\VulkanMemoryAllocator\src;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Application;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Application\Platforms;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Core;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\Components;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\Rendering;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\VulkanAPI;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\VulkanAPI\Platform;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External\vulkan;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External\VulkanMemoryAllocator\src;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Application;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Application\Platforms;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Core;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\Components;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\Rendering;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\VulkanAPI;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\VulkanAPI\Platform;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;NOMINMAX;_CRT_NONSTDC_NO_DEPRECATE;_USE_MATH_DEFINES=1;NDEBUG;VK_USE_PLATFORM_WIN32_KHR;OE_SHADER_DIR="C:/Users/THEGM/Documents/Git/Point-Cloud-Viewer/Shaders/";CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;NOMINMAX;_CRT_NONSTDC_NO_DEPRECATE;_USE_MATH_DEFINES=1;NDEBUG;VK_USE_PLATFORM_WIN32_KHR;OE_SHADER_DIR=\"C:/Users/THEGM/Documents/Git/Point-Cloud-Viewer/Shaders/\";CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External\vulkan;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External\VulkanMemoryAllocator\src;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Application;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Application\Platforms;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Core;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\Components;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\Rendering;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\VulkanAPI;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\VulkanAPI\Platform;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External\vulkan;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External\VulkanMemoryAllocator\src;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Application;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Application\Platforms;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Core;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\Components;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\Rendering;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\VulkanAPI;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\VulkanAPI\Platform;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External\vulkan;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External\VulkanMemoryAllocator\src;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Application;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Application\Platforms;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Core;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\Components;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\Rendering;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\VulkanAPI;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\VulkanAPI\Platform;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;NOMINMAX;_CRT_NONSTDC_NO_DEPRECATE;_USE_MATH_DEFINES=1;NDEBUG;VK_USE_PLATFORM_WIN32_KHR;OE_SHADER_DIR="C:/Users/THEGM/Documents/Git/Point-Cloud-Viewer/Shaders/";CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;NOMINMAX;_CRT_NONSTDC_NO_DEPRECATE;_USE_MATH_DEFINES=1;NDEBUG;VK_USE_PLATFORM_WIN32_KHR;OE_SHADER_DIR=\"C:/Users/THEGM/Documents/Git/Point-Cloud-Viewer/Shaders/\";CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External\vulkan;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External\VulkanMemoryAllocator\src;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Application;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Application\Platforms;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Core;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\Components;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\Rendering;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\VulkanAPI;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\VulkanAPI\Platform;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External\vulkan;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External\VulkanMemoryAllocator\src;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Application;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Application\Platforms;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Core;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\Components;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\Rendering;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\VulkanAPI;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\VulkanAPI\Platform;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External\vulkan;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External\VulkanMemoryAllocator\src;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Application;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Application\Platforms;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Core;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\Components;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\Rendering;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\VulkanAPI;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\VulkanAPI\Platform;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;NOMINMAX;_CRT_NONSTDC_NO_DEPRECATE;_USE_MATH_DEFINES=1;NDEBUG;VK_USE_PLATFORM_WIN32_KHR;OE_SHADER_DIR="C:/Users/THEGM/Documents/Git/Point-Cloud-Viewer/Shaders/";CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;NOMINMAX;_CRT_NONSTDC_NO_DEPRECATE;_USE_MATH_DEFINES=1;NDEBUG;VK_USE_PLATFORM_WIN32_KHR;OE_SHADER_DIR=\"C:/Users/THEGM/Documents/Git/Point-Cloud-Viewer/Shaders/\";CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External\vulkan;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External\VulkanMemoryAllocator\src;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Application;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Application\Platforms;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Core;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\Components;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\Rendering;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\VulkanAPI;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\VulkanAPI\Platform;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External\vulkan;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External\VulkanMemoryAllocator\src;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Application;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Application\Platforms;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Core;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\Components;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\Rendering;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\VulkanAPI;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Source\VulkanAPI\Platform;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV;C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\External\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/THEGM/Documents/Git/Point-Cloud-Viewer/PCV/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/THEGM/Documents/Git/Point-Cloud-Viewer -BC:/Users/THEGM/Documents/Git/Point-Cloud-Viewer/build --check-stamp-file C:/Users/THEGM/Documents/Git/Point-Cloud-Viewer/build/PCV/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\build\PCV\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/THEGM/Documents/Git/Point-Cloud-Viewer/PCV/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/THEGM/Documents/Git/Point-Cloud-Viewer -BC:/Users/THEGM/Documents/Git/Point-Cloud-Viewer/build --check-stamp-file C:/Users/THEGM/Documents/Git/Point-Cloud-Viewer/build/PCV/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\build\PCV\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/THEGM/Documents/Git/Point-Cloud-Viewer/PCV/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/THEGM/Documents/Git/Point-Cloud-Viewer -BC:/Users/THEGM/Documents/Git/Point-Cloud-Viewer/build --check-stamp-file C:/Users/THEGM/Documents/Git/Point-Cloud-Viewer/build/PCV/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\build\PCV\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/THEGM/Documents/Git/Point-Cloud-Viewer/PCV/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/THEGM/Documents/Git/Point-Cloud-Viewer -BC:/Users/THEGM/Documents/Git/Point-Cloud-Viewer/build --check-stamp-file C:/Users/THEGM/Documents/Git/Point-Cloud-Viewer/build/PCV/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\build\PCV\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Application\Application.cpp" />
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Application\Application.h" />
+    <ClCompile Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Application\Platforms\PlatformGlfw.cpp" />
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Application\Platforms\PlatformGlfw.h" />
+    <ClCompile Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Application\NativeWindowWrapper.cpp" />
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Application\NativeWindowWrapper.h" />
+    <ClCompile Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Core\engine.cpp" />
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Core\engine.h" />
+    <ClCompile Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Core\Scene.cpp" />
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Core\Scene.h" />
+    <ClCompile Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Core\Camera.cpp" />
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Core\Camera.h" />
+    <ClCompile Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Rendering\RenderQueue.cpp" />
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Rendering\RenderQueue.h" />
+    <ClCompile Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Rendering\Renderer.cpp" />
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Rendering\Renderer.h" />
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Maths\OEMaths.h" />
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Maths\Vec2.h" />
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Maths\Vec3.h" />
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Maths\Vec4.h" />
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Maths\VecN.h" />
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Maths\Mat2.h" />
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Maths\Mat3.h" />
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Maths\Mat4.h" />
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Maths\MatN.h" />
+    <ClCompile Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Maths\transform.cpp" />
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Maths\transform.h" />
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Vulkan\Platform\Surface.h" />
+    <ClCompile Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Vulkan\Platform\Surface_Win32.cpp" />
+    <ClCompile Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Vulkan\Platform\Surface_Linux.cpp" />
+    <ClCompile Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Vulkan\Platform\Surface_Cocoa.mm" />
+    <ClCompile Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Vulkan\VkContext.cpp" />
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Vulkan\VkContext.h" />
+    <ClCompile Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Vulkan\Pipeline.cpp" />
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Vulkan\Pipeline.h" />
+    <ClCompile Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Vulkan\RenderPass.cpp" />
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Vulkan\RenderPass.h" />
+    <ClCompile Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Vulkan\SwapChain.cpp" />
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Vulkan\SwapChain.h" />
+    <ClCompile Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Vulkan\Common.cpp" />
+    <ClInclude Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\PCV\Vulkan\Common.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\build\ZERO_CHECK.vcxproj">
+      <Project>{5BB684B8-6FB9-3BAA-B663-B047CB130F88}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\THEGM\Documents\Git\Point-Cloud-Viewer\build\External\glfw\src\glfw.vcxproj">
+      <Project>{9DE4F444-C6FB-30DB-8E32-BAE6737C10E1}</Project>
+      <Name>glfw</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
